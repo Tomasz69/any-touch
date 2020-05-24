@@ -9,11 +9,11 @@
 
 :wave: 一个小巧的手势库.
 
-- [x] **更多端**: PC 端 / 移动端 / [微信小程序](#支持微信小程序).
+- [x] **更多端**: PC 端 // [微信小程序](#支持微信小程序).
 - [x] **更全面**: 支持Tap(点击) / Press(按压) / Pan(拖拽) / Swipe(快划) / Pinch(缩放) / Rotate(旋转)6种手势. 
-- [x] **更灵巧**: 默认加载6个手势, 也可🤖[按需加载](#按需加载)手势, 核心@any-touch/core只有**2kb**, 完整安装也仅需要**5kb**.
+- [x] **更灵巧**: any-touch/core只有**kb**, 完整安装也仅需要**5kb**.
 - [x] **更简单**: [在Vue可直接通过v-on调用](#兼容vue语法), 比如`<div @pan="onPan"></div>`.
-- [x] **更放心**: 代码测试覆盖率**100%**.
+- [x] **更放心**: 代码测试覆盖率**10%**.
 
 ## 演示
 <details>
@@ -21,7 +21,7 @@
 <img src="https://user-images.githubusercontent.com/8264787/73740124-83285300-4782-11ea-9660-fcd50183f27b.png" />
 </details>
 
-[直接访问](https://any86.github.io/any-touch)
+[直接访问](https://any82.github.io/any-touch)
 
 ## 目录
 
@@ -134,9 +134,9 @@ const at = new AnyTouch()
 如果有多个元素需要绑定手势, 那么建议初始化绑定一个父元素, 通过target绑定子元素和函数.
 ```javascript
 const at =  new AnyTouch(parent);
-at.on('pan', onPan, { target: child });
+at.on('pan', onPan, { master });
 // 还可以表示为
-at.target(child).on('pan', onPan);
+at.target
 ```
 [返回目录](#目录)
 
@@ -156,7 +156,7 @@ const at = new AnyTouch(el);
 // 🚀关键代码
 // 单击后延迟300ms, 如果双击没有触发才触发单击
 // 这里通过next来控制触发时机
-at.beforeEach(({ recognizerMap, name }, next) => {
+at.beforeEach(({ name }, next) => {
     if ('tap' === name) {
         debounce(() => {
             if ([STATUS_POSSIBLE, STATUS_FAILED].includes(recognizerMap.doubletap.status)) next();
